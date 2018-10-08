@@ -19,6 +19,13 @@
   "devDependencies": {
     "coffeescript": "^2.2.3"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mick-whats/strfy"
+  },
+  "bugs": {
+    "url": "https://github.com/mick-whats/strfy/issues"
+  },
   "ava": {
     "files": [
       "test/*.js"
