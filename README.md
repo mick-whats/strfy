@@ -32,12 +32,22 @@ strfy.open(sample)
 .catch()
 ```
 
-`strfy.open`はobjectをbrowserで開く関数です。
+  
+大きなObjectを`console.log`等で表示しても、全体像の把握が困難です。
+
+その解決手段としてstrfyを提案します。
+
+
+`strfy.open`は引数のobjectをbrowserで開く関数です。
+
 内部的にはhtmlに変換し、TMPDIR(osごとに異なるtemporary directory)に保存します。それをosごとに異なるopenコマンドで開きます。
 
-strfy.open(sample)で動作しますが、これはpromiseオブジェクトを返します。なので一部のtest環境などでは適切に`then``catch`を配置する必要があります。  
+`strfy.open(object)`で動作しますが、これはpromiseオブジェクトを返します。  
+なので一部のtest環境など動作しない場合は適切に`then`,`catch`を配置する必要があります。  
 また、promiseなので`await`も使用できます。
 
+`strfy.open`は実行するたびに新しいwindowを開きます。  
+この挙動が不満なら、`strfy.save`があります。
 
 ## install
 
@@ -120,8 +130,11 @@ strfy.path()
 
 ## with browsersync
 
-```sh
-> browser-sync start --server "{strfy.path}" --files "*.html"
+browsersyncを使うと別のPCやスマートフォン等に表示することもできます。
 
-> open "http://localhost:3000/strfy.html"
+```sh
+> URI={{html_path}} &&browser-sync start --server $URI --files $U
+RI/strfy.html --startPath "/strfy.html"
 ```
+
+[Browsersync \- Time\-saving synchronised browser testing](https://browsersync.io/)
