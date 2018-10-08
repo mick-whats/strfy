@@ -4,27 +4,19 @@
   "scripts": {
     "test": "ava",
     "compile": "coffee -o ./ -cw coffee/",
-    "watch:ava": "chokidar 'lib/*.js' 'test/*.js' -c 'nyc ava'",
-    "watch:all": "npm run compile &node watch.js &npm run watch:ava",
     "watch": "npm run compile &ava -w",
     "cover": "nyc ava",
     "report": "nyc report --reporter=html",
     "update:snap": "ava --update-snapshots"
   },
-  "files": [
-    "README.md"
-  ],
-  "keywords": [],
+  "keywords": ["console"],
   "dependencies": {
-    "commander": "^2.15.1",
     "lodash": "^4.17.11",
     "objelity": "^1.0.0",
     "opn": "^5.4.0",
     "safe-json-stringify": "^1.2.0"
   },
   "devDependencies": {
-    "chokidar": "^2.0.3",
-    "chokidar-cli": "^1.2.0",
     "coffeescript": "^2.2.3"
   },
   "ava": {
