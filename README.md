@@ -7,22 +7,21 @@
 ```js
 var strfy = require('strfy')
 var sample = {
-  str: 'hello world!!',
-  num: 999,
-  arr: [1, 2, 3, 4, 5],
-  bool: true,
-  fn: (function() {
-    return false;
-  }).toString(),
-  module: strfy,
-  obj: {
-    a: 1,
-    b: 'box',
-    c: ['x', 'y', 'z']
-  },
-  un: void 0,
-  nil: null
-};
+    str: 'hello world!!',
+    num: 999,
+    arr: [1, 2, 3, 4, 5, 6, 7],
+    bool: true,
+    fn: (function() {
+      return false;
+    }).toString(),
+    obj: {
+      a: 1,
+      b: 'box',
+      c: ['x', 'y', 'z']
+    },
+    un: void 0,
+    nil: null
+  };
 
 strfy.open(sample)
 
