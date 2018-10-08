@@ -50,7 +50,7 @@
     return t.pass();
   });
 
-  test('open', async function(t) {
+  test.skip('open', async function(t) {
     var _path;
     _path = (await strfy.open(sample));
     _path = (await strfy.open([
@@ -65,7 +65,7 @@
     return t.true(path.isAbsolute(_path));
   });
 
-  test.only('save', async function(t) {
+  test.skip('save', async function(t) {
     var _path;
     _path = (await strfy.save(sample));
     return t.true(path.isAbsolute(_path));

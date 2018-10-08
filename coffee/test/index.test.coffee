@@ -29,11 +29,11 @@ test.skip 'constructor', (t) ->
   t.log await s.open().catch (e)-> throw e
   t.pass()
 
-test 'open', (t) ->
+test.skip 'open', (t) ->
   _path = await strfy.open(sample)
   _path = await strfy.open([1,'2',true,null,{a:'b'}])
   t.true path.isAbsolute(_path)
-test.only 'save', (t) ->
+test.skip 'save', (t) ->
   _path = await strfy.save(sample)
   t.true path.isAbsolute(_path)
 
