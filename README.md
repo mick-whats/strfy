@@ -1,5 +1,7 @@
 # STRFY
 
+![image](https://user-images.githubusercontent.com/9634573/46605903-107b7900-cb36-11e8-95fc-e232b2862cdd.png)
+
 ## use it
 
 ```js
