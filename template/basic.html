@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Strfy</title>
+  <style type="text/css">
+    html {
+      font-family: arial, sans-serif;
+    }
+    div#logo {
+      text-align: left;
+      margin-left: 10PX;
+    }
+    h1 { color: #111;
+    /* font-size: 64px;
+    font-weight: 700;
+    line-height: 64px;
+    margin: 0 0 0;
+    padding: 20px 30px; */
+    font-family: arial, sans-serif;
+    text-align: left;
+    text-shadow: 2px 2px #ccc;
+    }
+    blockquote {
+      background-color: #f7f5e6;
+      min-height: 500px;
+      /* margin-block-start: 1em;
+      margin-block-end: 1em; */
+      box-shadow: 2px 1px 2px 1px ghostwhite;
+      padding-top: 10px;
+      padding-left: 10px;
+      padding-right: 10px;
+      padding-bottom: 10px;
+      margin-top: 2px;
+      margin-left: 2px;
+      margin-right: 2px;
+      margin-bottom: 2px;
+    }
+    code {
+      margin: auto;
+      position: relative;
+      box-sizing: border-box;
+      background-color: #394034;
+      color: #f8f8f2!important;
+      display: block;
+      padding: 12px 12px;
+      text-align: left;
+      overflow: auto;
+      border: 0;
+      border-radius: 6px;
+      font-family: Menlo,Consolas,'DejaVu Sans Mono',monospace;
+      font-size: 14px!important;
+    }
+    footer{
+      font-size: 80%;
+      width: 100%;
+      text-align: center;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      /* background-color: #313131; */
+    }
+  </style>
+</head>
+
+<body>
+  
+  <div id="logo" >
+    <%= logo %>
+  </div>
+  
+  <hr>
+  <blockquote id="app">
+    <vue-json-pretty :data="obj"></vue-json-pretty>
+  </blockquote>
+  <hr>
+  <div id="bs-command">
+    <a href="#bs-command" @click="togglebsCommandWindow"> try  install  "browser-sync" and run to command</a>
+    <code v-show="bsCommandWindow">URI=<%= tmpPath %> &&browser-sync start --server $URI --files $URI/strfy.html --startPath "/strfy.html"</code>
+  </div>
+
+  <footer>
+    since 2018 <a href="https://github.com/mick-whats">mick-whats</a> 
+    Powered by: <a href="https://vuejs.org/index.html">Vue.js</a> , <a href="https://github.com/leezng/vue-json-pretty">leezng/vue-json-pretty</a></p>
+  </footer>
+</body>
+<script><%= vue_js %></script>
+<script><%= vue_json_pretty_js %></script>
+<script>
+  var vsp = new Vue({
+    el: '#app',
+    components: {
+      VueJsonPretty: VueJsonPretty.default
+    },
+    data: function () {
+      return {
+        obj: <%= json_body %>
+      }
+    }
+  });
+  var bsCommand = new Vue({
+    el: '#bs-command',
+    data: {
+      bsCommandWindow: false
+    },
+    methods: {
+      togglebsCommandWindow: function() {
+        this.bsCommandWindow = !this.bsCommandWindow;
+      }
+    }
+  });
+</script>
+
+</html>
