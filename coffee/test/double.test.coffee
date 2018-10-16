@@ -36,8 +36,7 @@ test.serial.beforeEach (t)->
 test.afterEach ->
   td.reset()
   return
-  # TODO: testdouble & ava 注意ポイント
-  # serialにしないと不安定
+
 
 test.serial 'save', (t) ->
   td.when(t.context.utility.writeFile(
