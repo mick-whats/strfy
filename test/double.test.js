@@ -56,8 +56,6 @@
     td.reset();
   });
 
-  // TODO: testdouble & ava 注意ポイント
-  // serialにしないと不安定
   test.serial('save', function(t) {
     td.when(t.context.utility.writeFile(td.matchers.argThat(isTmpPath), td.matchers.argThat(isHtml))).thenResolve();
     return t.context.strfy.save({
