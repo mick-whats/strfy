@@ -35,10 +35,10 @@ strfy.open(sample)
   
 大きなObjectを`console.log`等で表示しても、全体像の把握が困難です。
 
-その解決手段としてstrfyを提案します。
+その解決手段としてstrfyを作りました。
 
 
-`strfy.open`は引数のobjectをbrowserで開く関数です。
+`strfy.open`は引数のobjectをbrowserで開きます。
 
 内部的にはhtmlに変換し、TMPDIR(osごとに異なるtemporary directory)に保存します。それをosごとに異なるopenコマンドで開きます。
 
@@ -47,7 +47,7 @@ strfy.open(sample)
 また、promiseなので`await`も使用できます。
 
 `strfy.open`は実行するたびに新しいwindowを開きます。  
-この挙動が不満なら、`strfy.save`があります。
+この挙動が不満なら、`strfy.save`が使えば保存のみを行います。
 
 ## install
 
@@ -88,11 +88,7 @@ strfy.open(obj)
 ### save
 ---
 
-引数に渡したobjectをhtmlで保存します。  
-openは実行ごとに新しくBrowserを開きます。この処理が不要な場合にsaveを使うと便利です。
-
-
-htmlはTMPDIRに作成されます。  
+`strfy.open`は自動でBrowserを開きますが、この関数は保存だけを行います。  
 Promiseはhtmlファイルのpathを返します。
 #### Arguments
 Object (Object | Array)
