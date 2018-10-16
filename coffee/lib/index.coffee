@@ -52,6 +52,8 @@ class Strfy
     @filePath = getTmpFilePath()
     @body = stringConvertingByType(obj)
   
+    @body = objelity.stringify(obj)
+
   save: ()->
     filePath = @filePath
     new Promise (resolve, reject)=>
