@@ -1,11 +1,7 @@
 _ = require 'lodash'
 path = require 'path'
 os = require 'os'
-util = require('util')
-fs = require('fs')
-writeFile = util.promisify(fs.writeFile)
-opn = require('opn')
-safeJsonStringify = require('safe-json-stringify')
+utility = require './utility'
 dependence = require './dependence'
 objelity = require 'objelity'
 
@@ -14,21 +10,6 @@ class Strfy
   getTmpFilePath = ->
     tmpDir = os.tmpdir()
     return path.join(tmpDir,BASE_FILE_NAME)
-  stringConvertingByType = (obj)->
-    switch typeof obj
-      when 'undefined'
-        'undefined'
-      when 'boolean','number','string'
-        safeJsonStringify obj
-      when 'function'
-        obj.toString()
-      else
-        if _.isNull(obj)
-          safeJsonStringify(obj)
-        else if _.isArray(obj)
-          safeJsonStringify(obj)
-        else
-          safeJsonStringify(objelity.toStringOfDeepKeys(obj))
   makeHtml = (body)->
     new Promise (resolve, reject)->
       Promise.all [
@@ -50,8 +31,6 @@ class Strfy
       .catch(reject)
   constructor: (obj) ->
     @filePath = getTmpFilePath()
-    @body = stringConvertingByType(obj)
-  
     @body = objelity.stringify(obj)
 
   save: ()->
@@ -59,7 +38,7 @@ class Strfy
     new Promise (resolve, reject)=>
       makeHtml(@body)
       .then (_html)->
-        writeFile(filePath, _html)
+        utility.writeFile(filePath, _html)
         .then ()->
           resolve(filePath)
       .catch(reject)
@@ -67,7 +46,7 @@ class Strfy
     new Promise (resolve, reject)=>
       @save()
       .then (filePath)->
-        opn(filePath,{wait: false})
+        utility.opn(filePath,{wait: false})
         .then ()-> resolve(filePath)
       .catch(reject)
   @save: (obj)->
