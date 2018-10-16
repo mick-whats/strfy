@@ -1,8 +1,8 @@
 _ = require('lodash')
-util = require('util')
+utility = require './utility'
 fs = require('fs')
 path = require('path')
-readFile = util.promisify(fs.readFile)
+readFile = utility.readFile
 module.exports =
   htmlTemplate: ->
     new Promise (resolve, reject)->
