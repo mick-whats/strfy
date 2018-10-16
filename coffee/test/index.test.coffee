@@ -1,6 +1,7 @@
 assert = require 'assert'
 {test} = require 'ava'
 path = require 'path'
+os = require('os')
 strfy = require '../'
 
 sample =
@@ -25,17 +26,10 @@ sample2 =
             f: 'g'
 
 test.skip 'constructor', (t) ->
-  s = new strfy(sample)
+  s = new strfy(sample2)
   t.log await s.open().catch (e)-> throw e
   t.pass()
 
-test.skip 'open', (t) ->
-  _path = await strfy.open(sample)
-  _path = await strfy.open([1,'2',true,null,{a:'b'}])
-  t.true path.isAbsolute(_path)
-test.skip 'save', (t) ->
-  _path = await strfy.save(sample)
-  t.true path.isAbsolute(_path)
 
 test 'path', (t) ->
   t.true path.isAbsolute strfy.path()
@@ -47,3 +41,5 @@ test.skip 'readme',(t)->
     t.pass()
   .catch (e)-> throw e
   
+test 'tmpdir is absolute path', (t) ->
+  t.true path.isAbsolute os.tmpdir()
