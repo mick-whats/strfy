@@ -26,6 +26,9 @@
   },
   "files": [
     "lib",
+    "dependence",
+    "template",
+    "image",
     "LICENSE.txt"
   ],
   "repository": {
